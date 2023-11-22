@@ -18,6 +18,9 @@ in for a dead rat and a string to swing it with—and so on, and so on,
 hour after hour. And when the middle of the afternoon came, from being a
 poor poverty, stricken boy in the .... morning, Tom was literally
 rolling in wealth."""
+
+##  ПЕРЕЗАПИСУЙТЕ зміст змінної adwentures_of_tom_sawer у кожному завдані,
+##  якщо умова прямо не вимагає чогось іншого.
 # task 01 ==
 """ Дані у строці adwentures_of_tom_sawer розбиті випадковим чином, через помилку.
 треба замінити кінець абзацу на пробіл .replace("\n", " ")"""
