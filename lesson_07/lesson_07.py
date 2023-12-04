@@ -182,7 +182,7 @@ def a_plus_b(a:int, b:int, c=1, d=2, e=3) -> int:
     # check_input(c)
     # check_input(d)
     # check_input(e)
-    # map(check_input, [a, b, c, d, e])
+    list(map(check_input, [a, b, c, d, e]))
     return (a + b) * (2*a - b)
 
 def check_input(user_input):
