@@ -67,61 +67,127 @@
 # vars()  #	Returns the **dict** property of an object
 # zip()  #	Returns an iterator, from two or more iterators
 
+base_numbers = [2, 4, 6, 8, 10]
+powers = [1, 2, 3, 4, 5]
+numbers_powers = list(map(pow, base_numbers, powers))
+
+print(numbers_powers)
+
+list_of_words = ['apple', 'banana', 'cherry']
+my_map = map(str.upper, list_of_words)
+upper_words = list(my_map)
+print(upper_words)
+
+list_of_words = ['apple', 'banana', 'cherry']
+upper_words = [word.upper() for word in list_of_words]
+print(upper_words)
+
+list1 = [1, 2, 3,  5]
+list2 = ['a', 'b', 'c', 'd']
+list3 = ["ddd", "ffff", "dweree", "Hherue"]
+zipped = zip(list1, list2, list3)
+print(list(zipped))
+
+my_new_list = [3, 28, 6, 10, 3]
+
+print(isinstance(my_new_list, (int, list)))
+
+# sort() та sorted()
+print(my_new_list)
+print(sorted(my_new_list))
+print(my_new_list)
+print(my_new_list.sort())
+print(my_new_list)
+
 print("*"*88)
 # Додавання нової функції - Adding new functions
-# def print_lyrics():
-#     """Друкує пісню"""
-#     print("Ой у лузі червона калина похилилася")
-#     print("Чогось наша славна Україна зажурилася")
+def print_lyrics():
+    """Друкує пісню"""
+    print("Ой у лузі червона калина похилилася")
+    print("Чогось наша славна Україна зажурилася")
 
-# print_lyrics()
+print_lyrics()
 
 # Виклик функції
 # Параметри та аргументи - Parameters and arguments
-# def square(number:int) -> int:
-#     """Calculate the square of number."""
-#     return number ** 2
+def square(number:int) -> int:
+    """Calculate the square of number."""
+    return number ** 2
 
-# print("3**2:", square(3))
-# print("2**2:", square(2))
+print("3**2:", square(3))
+print("2**2:", square(2))
 
 # Функція з аргументами
-# def describe_pet(animal_type, pet_name):
-#     """Display information about a pet."""
-#     return f"My {animal_type}'s name is {pet_name.title()}."
-# print(describe_pet("shinshila", "pyizhyk"))
-# print(describe_pet("pyizhyk", "shinshila"))
+def describe_pet(animal_type:str, pet_name:str) -> str:
+    """Display information about a pet."""
+    return f"My {animal_type}'s name is {pet_name.title()}."
 
-# def make_pizza(*toppings):
+out = describe_pet("shinshila", "pyizhyk")
+print(out)
+print(describe_pet("pyizhyk", "shinshila"))
+print(describe_pet(pet_name="Seryoga", animal_type="cat"))
 
+def make_pizza(*toppings):
+    return f"your pizza contains: {', '.join(*toppings)}"
+topp = ["salo", "kovbasa", "moskali"]
+print(make_pizza(topp))
 
-# def comma(*args) -> int:
-#     return ",".join([str(a) for a in args])
-# print(comma(1))
-# print(comma(1, 2))
-# print(comma(1, 2, 3))
+def comma(*args) -> str:
+    return "|".join([str(a) for a in args])
+print(comma(1))
+print(comma(1, 2))
+print(comma(1, 2, 3))
 
-# def make_pizza(*toppings):
-#     return f"your pizza contains: {', '.join(toppings)}"
+print(make_pizza(("aplle", "banana", "kivi")))
 
-# print(make_pizza("aplle", "banana", "kivi"))
+def print_kwargs(**kwargs):
+    if "age" in kwargs:
+        print("You have AGE")
 
-#print(comma(1, 2, 3))
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# Приклад виклику функції
+print_kwargs(name="John", age=25, city="New York")
+print_kwargs(name="John", city="New York")
+
 
 # Опційні задані значення аргументів - Making an Argument Optional
-# def spam(a, b=42):
-#     return (a + b)
-# print(spam(1))
-# print(spam(1, 1))
+def spam(a, b=42):
+    return (a + b)
+print(spam(1))
+print(spam(1, 1))
 
 # def spam_two(a, b, c=3, d=42):
 #     return (a + b)
 
-# def spam_third(a, *args):
-#     return (a)
-# print(spam_third(1, 2, 3, 5, "ffff"))
+def spam_third(a, *args):
+    return (a)
+print(spam_third(1, 2, 3, 5, "ffff"))
 
-# def kward_spam(**kwargs):
-#     return (kwargs["a"]+kwargs["b"])
+def kward_spam(**kwargs):
+    return (kwargs["a"]+kwargs["b"])
 
-# print(kward_spam(a=1, b=2))
+print(kward_spam(a=1, b=2))
+
+l_square = lambda x: x**2
+print(l_square(5))
+
+mul = lambda x, y: x*y
+print(mul(3, 2))
+
+def a_plus_b(a:int, b:int, c=1, d=2, e=3) -> int:
+    # check_input(a)
+    # check_input(b)
+    # check_input(c)
+    # check_input(d)
+    # check_input(e)
+    # map(check_input, [a, b, c, d, e])
+    return (a + b) * (2*a - b)
+
+def check_input(user_input):
+    if not isinstance(user_input, int):
+        raise TypeError(f"Wrong type: {user_input} not int")
+
+print(a_plus_b(1,2))
+print(a_plus_b([1],"2"))
