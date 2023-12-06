@@ -64,11 +64,11 @@ print("Your pizza is getting ready!")
 """
 
 numbers_input = input("Введіть натуральне число: ")
-sum_numbers = 0
-for number in numbers_input:
-    if number.isdigit():
+if numbers_input.isdigit():
+    sum_numbers = 0
+    for number in numbers_input:
         sum_numbers += int(number)
-print(f"Сума цифр числа {numbers_input}: {sum_numbers}")
+    print(f"Сума цифр числа {numbers_input}: {sum_numbers}")
 
 # task 7
 """  Потрібно написати програму, яка просить користувача ввести числа, доки він не введе 0.
@@ -101,7 +101,7 @@ guesses = 0
 max_guesses = 5
 print("Вгадайте число від 1 до 20 за 5 спроб!")
 
-for guesses in range(1, max_guesses + 1):
+for guesses in range(max_guesses):
     guessed_number = input("Вгадайте число: ")
 
     if int(guessed_number) < secret_number:
@@ -112,7 +112,7 @@ for guesses in range(1, max_guesses + 1):
         print(f"Правильно! Загадене число {guessed_number}")
         break
 
-    if guesses == max_guesses:
+    if guesses == max_guesses - 1:
         print(f"Ви не вгадали. Було загадано число {secret_number}. Спробуйте зіграти ще")
 
 # task 9
