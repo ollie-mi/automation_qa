@@ -1,8 +1,7 @@
 import unittest
-import sys 
+# import sys 
 # import pathlib
 # sys.path.insert(0, str(pathlib.Path(__file__).parent.parent))
-# #from lession_06 import lession_06_code
 # from lesson_07.lesson_07 import *
 from importlib.machinery import SourceFileLoader
 
@@ -20,6 +19,7 @@ class HomeworksTesting(unittest.TestCase):
 
     def test_task01(self):
         """Square of 2"""
+        print("test1")
         actual_result = square(2)
         expected_result = 4
         self.assertEqual(actual_result, expected_result, f"Square of 2 is {square(2)}")
@@ -35,7 +35,7 @@ class HomeworksTesting(unittest.TestCase):
         actual_result = a_plus_b(1,1,1,1,1)
         expected_result = 1
         self.assertEqual(actual_result, expected_result)
-        self.assertTrue(actual_result==expected_result, msg="")
+        self.assertTrue(actual_result == expected_result, msg="")
         self.assertEqual(self.PI, 3.14)
 
 if __name__ == "__main__":
