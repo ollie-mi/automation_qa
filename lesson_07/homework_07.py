@@ -23,7 +23,6 @@ def multiplication_table(number: int):
         multiplier += 1
 
 
-multiplication_table(3)
 # Should print:
 # 3x1=3
 # 3x2=6
@@ -42,9 +41,6 @@ def two_numbers_sum(num_1: int, num_2: int) -> int:
     return num_1 + num_2
 
 
-print("3 + 5 =", two_numbers_sum(3, 5))
-
-
 # task 3
 """  Написати функцію, яка розрахує середнє арифметичне списку чисел.
 """
@@ -53,9 +49,6 @@ print("3 + 5 =", two_numbers_sum(3, 5))
 def average_of_list_numbers(number_list: list) -> float:
     """Calculate arithmetic mean of list of numbers"""
     return sum(number_list) / len(number_list)
-
-
-print("Average of the list:", average_of_list_numbers([1, 2, 3, 4, 5, 6]))
 
 
 # task 4
@@ -70,9 +63,6 @@ def reverse_string(string: str) -> str:
         result_list.append(string[i])
     result_string = ''.join(result_list)
     return result_string
-
-
-print("Reverse of Hello:", reverse_string('Hello'))
 
 
 # task 5
@@ -90,7 +80,6 @@ def longest_word_in_list(words_list: list) -> str:
 
 
 capital_cities = ["Kyiv", "Wellington", "Reykjavik", "Zagreb", "Lisbon"]
-print("Longest word in the list:", longest_word_in_list(capital_cities))
 
 
 # task 6
@@ -106,14 +95,6 @@ def find_substring(str1: str, str2: str) -> int:
     else:
         return -1
 
-
-str1 = "Hello, world!"
-str2 = "world"
-print(find_substring(str1, str2))  # поверне 7
-
-str1 = "The quick brown fox jumps over the lazy dog"
-str2 = "cat"
-print(find_substring(str1, str2))  # поверне -1
 
 # task 7
 # task 8
@@ -132,7 +113,6 @@ def is_list_has_duplicates(ch_list: list) -> bool:
 
 
 big_list = [3, 5, -2, -1, -3, 0, 1, 4, 5, 2]
-print("Duplicate checker:", is_list_has_duplicates(big_list))
 
 
 def key_value_swapper(dictionary: dict) -> dict:
@@ -145,7 +125,6 @@ def key_value_swapper(dictionary: dict) -> dict:
 
 
 base_dict = {'contry': 'Ukraine', 'continent': 'Europe', 'size': 123}
-print("Swap key and value in dict:", key_value_swapper(base_dict))
 
 
 def pizza_constructor() -> list:
@@ -162,14 +141,35 @@ def pizza_constructor() -> list:
     return toppings_list
 
 
-toppings_str = ', '.join(pizza_constructor())
-print("Your pizza contains:", toppings_str)
-
-
 def even_numbers_squares(num: list) -> list:
-    """Finds a list of squares of even numbers from the list."""
+    """Generates a list of squares of even numbers from the list."""
+    if not num:
+        raise ValueError("Given list shouldn't be empty")
     return [x ** 2 for x in num if x % 2 == 0]
 
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-print("Even number squares:", even_numbers_squares(numbers))
+
+
+if __name__ == "__main__":
+    multiplication_table(3)
+    print("3 + 5 =", two_numbers_sum(3, 5))
+    print("Average of the list:", average_of_list_numbers([1, 2, 3, 4, 5, 6]))
+    print("Reverse of Hello:", reverse_string('Hello'))
+    print("Longest word in the list:", longest_word_in_list(capital_cities))
+
+    str_1 = "Hello, world!"
+    str_2 = "world"
+    print(find_substring(str_1, str_2))  # поверне 7
+
+    str_3 = "The quick brown fox jumps over the lazy dog"
+    str_4 = "cat"
+    print(find_substring(str_3, str_4))  # поверне -1
+
+    print("Duplicate checker:", is_list_has_duplicates(big_list))
+    print("Swap key and value in dict:", key_value_swapper(base_dict))
+
+    toppings_str = ', '.join(pizza_constructor())
+    print("Your pizza contains:", toppings_str)
+    print("Even number squares:", even_numbers_squares(numbers))
+
