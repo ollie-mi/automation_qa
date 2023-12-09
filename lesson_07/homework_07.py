@@ -125,16 +125,14 @@ print(find_substring(str1, str2))  # поверне -1
 """
 
 
-def duplicate_list_checker(ch_list: list) -> bool:
+def is_list_has_duplicates(ch_list: list) -> bool:
     """Checks the list for duplicates"""
     ch_set = set(ch_list)
-    if len(ch_list) > len(ch_set):
-        return True
-    return False
+    return len(ch_list) > len(ch_set)
 
 
 big_list = [3, 5, -2, -1, -3, 0, 1, 4, 5, 2]
-print("Duplicate checker:", duplicate_list_checker(big_list))
+print("Duplicate checker:", is_list_has_duplicates(big_list))
 
 
 def key_value_swapper(dictionary: dict) -> dict:
