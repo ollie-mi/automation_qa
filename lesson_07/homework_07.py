@@ -90,6 +90,8 @@ capital_cities = ["Kyiv", "Wellington", "Reykjavik", "Zagreb", "Lisbon"]
 
 def find_substring(str1: str, str2: str) -> int:
     """Finds position of string 1 in string 2. If fails to find, returns -1"""
+    if not isinstance(str1, str) or not isinstance(str2, str):
+        raise ValueError("str1 and str2 should be string!")
     if str2 in str1:
         return str1.find(str2)
     else:

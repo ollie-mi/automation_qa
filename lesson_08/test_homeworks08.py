@@ -38,6 +38,34 @@ class BasicFunctionsTesting(unittest.TestCase):
         self.assertEqual(expected_list, actual_result, f"even_numbers_squares returns {actual_result} for list "
                                                        f"without even numbers")
 
+    def test_find_substring_positive(self):
+        """Test that str_2 is part of str_1"""
+        string_1 = "Hello, world!"
+        string_2 = "world"
+        expected_result = 7
+        actual_result = find_substring(string_1, string_2)
+
+        self.assertIsInstance(actual_result, int, "Function find_substring should return int")
+        self.assertEqual(expected_result, actual_result, f"Expected result is {expected_result}, actual result "
+                                                         f"{actual_result}")
+
+    def test_find_substring_not_included(self):
+        """Test that if str_2 is not part of str_1 then -1 is returned"""
+        string_1 = "The quick brown fox jumps over the lazy dog"
+        string_2 = "cat"
+        expected_result = -1
+        actual_result = find_substring(string_1, string_2)
+
+        self.assertEqual(expected_result, actual_result, f"Expected result is {expected_result}, actual result "
+                                                         f"{actual_result}")
+
+    def test_find_substring_not_str_given(self):
+        """Test raising error if str_1 or str_2 are not strings"""
+        string_map = [(3, 'cat'), ('dog', True), (False, 3.14)]
+        for case in string_map:
+            with self.assertRaises(ValueError):
+                find_substring(case[0], case[1])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
