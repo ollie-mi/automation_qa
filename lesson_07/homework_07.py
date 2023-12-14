@@ -58,11 +58,7 @@ def average_of_list_numbers(number_list: list) -> float:
 
 def reverse_string(string: str) -> str:
     """Reverse the given string"""
-    result_list = []
-    for i in reversed(range(len(string))):
-        result_list.append(string[i])
-    result_string = ''.join(result_list)
-    return result_string
+    return string[::-1]
 
 
 # task 5
