@@ -9,6 +9,9 @@
 """
 
 import unittest
+import sys
+import pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).parent.parent))
 from lesson_07.homework_07 import *
 
 
@@ -65,6 +68,37 @@ class BasicFunctionsTesting(unittest.TestCase):
         for case in string_map:
             with self.assertRaises(ValueError):
                 find_substring(case[0], case[1])
+
+    def test_key_value_swapper_string_keys(self):
+        """Test for key_value_swapper function, when keys and values are strings"""
+        given_dict = {'country': 'Ukraine', 'continent': 'Europe', 'symbol': 'trident'}
+        expected_dict = {'Ukraine': 'country', 'Europe': 'continent', 'trident': 'symbol'}
+        swapped_dict = key_value_swapper(given_dict)
+        self.assertDictEqual(expected_dict, swapped_dict, f"Dict expected to be {expected_dict}, "
+                                                          f"but {swapped_dict} given")
+
+    def test_key_value_swapper_int_keys(self):
+        """Test for key_value_swapper function, when keys and values are numeric"""
+        given_dict = {1: 2, 3: 4, 5: 6}
+        expected_dict = {'2': 1, '4': 3, '6': 5}
+        swapped_dict = key_value_swapper(given_dict)
+        self.assertDictEqual(expected_dict, swapped_dict, f"Dict expected to be {expected_dict}, "
+                                                          f"but {swapped_dict} given")
+
+    def test_key_value_swapper_empty_dict(self):
+        """Test for key_value_swapper function, when empty dict given"""
+        given_dict = {}
+        expected_dict = {}
+        swapped_dict = key_value_swapper(given_dict)
+        self.assertDictEqual(expected_dict, swapped_dict, f"Empty dict expected, but {swapped_dict} given")
+
+    def test_key_value_swapper_mixed_keys(self):
+        """Test for key_value_swapper function, when keys and values are numeric"""
+        given_dict = {0: 'some_value', 'some_key': 1, 2: 3.14}
+        expected_dict = {'some_value': 0, '1': 'some_key', '3.14': 2}
+        swapped_dict = key_value_swapper(given_dict)
+        self.assertDictEqual(expected_dict, swapped_dict, f"Dict expected to be {expected_dict}, "
+                                                          f"but {swapped_dict} given")
 
 
 if __name__ == "__main__":
