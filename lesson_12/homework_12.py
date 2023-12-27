@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 
 CURRENT_FILE_PATH = Path(__file__)
-TEST_FILE_DIR = CURRENT_FILE_PATH.parent.parent / "ideas_for_test" / "work_with_csv"
+TEST_FILES_DIR = CURRENT_FILE_PATH.parent.parent / "ideas_for_test"
 CURRENT_DIR = Path.cwd()
 
 # task 1
@@ -15,15 +15,16 @@ ideas_for_test/work_with_csv
 
 def get_duplicate_csv(csv_name_1: str, csv_name_2: str) -> None:
     """Function takes two csv files, compares content and creates new csv file with duplicates"""
-    file_1_path = TEST_FILE_DIR / csv_name_1
-    file_2_path = TEST_FILE_DIR / csv_name_2
+    csv_dir = TEST_FILES_DIR / 'work_with_csv'
+    file_1_path = csv_dir / csv_name_1
+    file_2_path = csv_dir / csv_name_2
 
     if file_1_path.suffix != ".csv" or file_2_path.suffix != ".csv":
         raise ValueError(f"{csv_name_1} or {csv_name_2} should be csv files")
     if not file_1_path.exists():
-        raise FileNotFoundError(f"File {csv_name_1} was not found in {TEST_FILE_DIR}")
+        raise FileNotFoundError(f"File {csv_name_1} was not found in {csv_dir}")
     if not file_2_path.exists():
-        raise FileNotFoundError(f"File {csv_name_2} was not found in {TEST_FILE_DIR}")
+        raise FileNotFoundError(f"File {csv_name_2} was not found in {csv}")
 
     with file_1_path.open("r", encoding="utf-8") as csvfile_1:
         dialect = csv.Sniffer().sniff(csvfile_1.read(1024))
