@@ -56,9 +56,6 @@ def get_duplicate_csv(csv_name_1: str, csv_name_2: str) -> None:
             duplicate_writer.writerows(duplicate_rows)
 
 
-get_duplicate_csv('rmc.csv', 'r-m-c.csv')
-
-
 # task 2
 """ Провалідуйте, чи усі файли у папці
 ideas_for_test/work_with_json
@@ -81,10 +78,6 @@ def is_valid_json_in_dir(json_dir) -> None:
                     json_data = json.loads(file.read())
                 except json.decoder.JSONDecodeError:
                     logger.error(f"File {name} is not valid json file")
-
-
-json_files_dir = TEST_FILES_DIR / "work_with_json"
-is_valid_json_in_dir(json_files_dir)
 
 
 # task 3
@@ -133,4 +126,10 @@ def find_group_and_value_in_xml(xml_file: str, group_number: int, incoming_value
         logger.info(f"Group {group_number} does not exist")
 
 
-find_group_and_value_in_xml('groups.xml', 2, '0xACDC')
+if __name__ == '__main__':
+    get_duplicate_csv('rmc.csv', 'r-m-c.csv')
+
+    json_files_dir = TEST_FILES_DIR / "work_with_json"
+    is_valid_json_in_dir(json_files_dir)
+
+    find_group_and_value_in_xml('groups.xml', 2, '0xACDC')
