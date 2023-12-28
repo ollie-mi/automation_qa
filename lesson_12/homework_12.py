@@ -107,6 +107,7 @@ def find_group_and_value_in_xml(xml_file: str, group_number: int, incoming_value
     root = ET.fromstring(xml_content)
 
     groups = root.findall(f".//group[number='{group_number}']")
+    log_message = 'Something wrong!'
     if groups:
         for group in groups:
             timing_exbytes = group.find('timingExbytes')
@@ -114,16 +115,17 @@ def find_group_and_value_in_xml(xml_file: str, group_number: int, incoming_value
                 incoming_attribute = timing_exbytes.find('incoming')
                 if incoming_attribute is not None:
                     if incoming_attribute.text == incoming_value:
-                        logger.info(f"Group {group_number} with incoming value {incoming_value} found")
-                        return
+                        log_message = f"Group {group_number} with incoming value {incoming_value} found"
                     else:
-                        logger.info(f"Group {group_number} with incoming value {incoming_value} not found")
+                        log_message = f"Group {group_number} with incoming value {incoming_value} not found"
                 else:
-                    logger.info(f"Group {group_number} doesn't have 'incoming' attribute")
+                    log_message = f"Group {group_number} doesn't have 'incoming' attribute"
             else:
-                logger.info(f"Group {group_number} doesn't have 'timingExbytes' attribute")
+                log_message = f"Group {group_number} doesn't have 'timingExbytes' attribute"
     else:
-        logger.info(f"Group {group_number} does not exist")
+        log_message = f"Group {group_number} does not exist"
+
+    logger.info(log_message)
 
 
 if __name__ == '__main__':
