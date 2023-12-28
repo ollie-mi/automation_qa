@@ -2,6 +2,7 @@ from lesson_10.logger import logger
 from pathlib import Path
 import csv
 import json
+import xml.etree.ElementTree as ET
 
 CURRENT_FILE_PATH = Path(__file__)
 TEST_FILES_DIR = CURRENT_FILE_PATH.parent.parent / "ideas_for_test"
@@ -69,6 +70,7 @@ ideas_for_test/work_with_json
 def is_valid_json_in_dir(json_dir) -> None:
     """
     Function iterates all json files in the directory and validates it
+    Outputs invalid json file information to the logger at ERROR level.
     """
     json_files_list = [x for x in json_dir.glob('*.json')]
     if json_files_list:
@@ -92,3 +94,43 @@ is_valid_json_in_dir(json_files_dir)
 результат пошуку виведіть через логер на рівні інфо
 """
 
+
+def find_group_and_value_in_xml(xml_file: str, group_number: int, incoming_value: str) -> None:
+    """
+    Function searches specified group number and 'timingExbytes/incoming' attribute.
+    Outputs the matching group information to the logger at INFO level.
+    """
+    xml_dir = TEST_FILES_DIR / "work_with_xml"
+    xml_file = xml_dir / xml_file
+
+    if xml_file.suffix != ".xml":
+        raise ValueError(f"{xml_file} should be xml file")
+    if not xml_file.exists():
+        raise FileNotFoundError(f"File {xml_file} was not found in {xml_dir}")
+
+    with xml_file.open() as xmlfile:
+        xml_content = xmlfile.read()
+
+    root = ET.fromstring(xml_content)
+
+    groups = root.findall(f".//group[number='{group_number}']")
+    if groups:
+        for group in groups:
+            timing_exbytes = group.find('timingExbytes')
+            if timing_exbytes:
+                incoming_attribute = timing_exbytes.find('incoming')
+                if incoming_attribute is not None:
+                    if incoming_attribute.text == incoming_value:
+                        logger.info(f"Group {group_number} with incoming value {incoming_value} found")
+                        return
+                    else:
+                        logger.info(f"Group {group_number} with incoming value {incoming_value} not found")
+                else:
+                    logger.info(f"Group {group_number} doesn't have 'incoming' attribute")
+            else:
+                logger.info(f"Group {group_number} doesn't have 'timingExbytes' attribute")
+    else:
+        logger.info(f"Group {group_number} does not exist")
+
+
+find_group_and_value_in_xml('groups.xml', 2, '0xACDC')
