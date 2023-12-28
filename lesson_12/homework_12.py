@@ -1,5 +1,7 @@
+from lesson_10.logger import logger
 from pathlib import Path
 import csv
+import json
 
 CURRENT_FILE_PATH = Path(__file__)
 TEST_FILES_DIR = CURRENT_FILE_PATH.parent.parent / "ideas_for_test"
@@ -14,7 +16,9 @@ ideas_for_test/work_with_csv
 
 
 def get_duplicate_csv(csv_name_1: str, csv_name_2: str) -> None:
-    """Function takes two csv files, compares content and creates new csv file with duplicates"""
+    """
+    Function takes two csv files, compares content and creates new csv file with duplicates
+    """
     csv_dir = TEST_FILES_DIR / 'work_with_csv'
     file_1_path = csv_dir / csv_name_1
     file_2_path = csv_dir / csv_name_2
@@ -60,6 +64,25 @@ ideas_for_test/work_with_json
 є валідними json.
 результат для невалідного файлу виведіть через логер на рівні еррор
 """
+
+
+def is_valid_json_in_dir(json_dir) -> None:
+    """
+    Function iterates all json files in the directory and validates it
+    """
+    json_files_list = [x for x in json_dir.glob('*.json')]
+    if json_files_list:
+        for jsonfile in json_files_list:
+            with jsonfile.open("r", encoding="utf-8") as file:
+                try:
+                    name = jsonfile.name
+                    json_data = json.loads(file.read())
+                except json.decoder.JSONDecodeError:
+                    logger.error(f"File {name} is not valid json file")
+
+
+json_files_dir = TEST_FILES_DIR / "work_with_json"
+is_valid_json_in_dir(json_files_dir)
 
 
 # task 3
