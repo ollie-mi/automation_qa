@@ -97,7 +97,7 @@ class SiteUser:
         user.logcount += 1
 
     def __str__(self):
-        return str(f"Користувач: {self.name}, Електронна пошта: {self.email}, Рівень доступу: {self.access}")
+        return str(f"Користувач: {self.name}, Електронна пошта: {self.email}, Рівень доступу: {self.access_level}")
 
     def __eq__(self, other):
         if isinstance(other, SiteUser):
