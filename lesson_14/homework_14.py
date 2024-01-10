@@ -34,6 +34,7 @@ import re
 
 
 class SiteUser:
+    """Class for representing user login to the system"""
 
     def __init__(self, name, email, access_level):
         self.__name = name
@@ -44,40 +45,56 @@ class SiteUser:
 
     @property
     def name(self):
+        """Getter for attribute name"""
         return self.__name
 
     @name.setter
     def name(self, new_name: str):
+        """Setter for attribute name"""
         if not isinstance(new_name, str):
             raise ValueError("Name should be a string")
         self.__name = new_name
 
     @property
     def email(self):
+        """Getter for attribute email"""
         return self.__email
 
     @email.setter
     def email(self, new_email):
+        """Setter for attribute email"""
         if not re.match(r"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$", new_email):
             raise ValueError("Email address is not valid")
         self.__email = new_email
 
     @property
-    def access(self):
+    def access_level(self):
+        """Getter for attribute access_level"""
         return self.__access_level
 
-    @access.setter
-    def access(self, new_level):
+    @access_level.setter
+    def access_level(self, new_level):
+        """Setter for attribute access_level"""
         if new_level not in self.__levels:
             raise ValueError("Such level doesn't exists")
         self.__access_level = new_level
 
     @property
     def logcount(self):
+        """Getter for attribute logcounter"""
         return self.__logcount
 
-    def update_logcount(self):
-        self.__logcount += 1
+    @logcount.setter
+    def logcount(self, new_logcount):
+        """Setter for attribute logcounter"""
+        if not isinstance(new_logcount, int):
+            raise ValueError("Log Counter should be integer")
+        self.__logcount = new_logcount
+
+    @classmethod
+    def increase_logcount(cls, user):
+        """Increase log counter for the user"""
+        user.logcount += 1
 
     def __str__(self):
         return str(f"Користувач: {self.name}, Електронна пошта: {self.email}, Рівень доступу: {self.access}")
