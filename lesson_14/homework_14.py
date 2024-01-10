@@ -81,19 +81,19 @@ class SiteUser:
 
     @property
     def logcount(self):
-        """Getter for attribute logcounter"""
+        """Getter for attribute logcount"""
         return self.__logcount
 
     @logcount.setter
     def logcount(self, new_logcount):
-        """Setter for attribute logcounter"""
+        """Setter for attribute logcount"""
         if not isinstance(new_logcount, int):
             raise ValueError("Log Counter should be integer")
         self.__logcount = new_logcount
 
     @classmethod
     def increase_logcount(cls, user):
-        """Increase log counter for the user"""
+        """Increase logcount for the user"""
         user.logcount += 1
 
     def __str__(self):
