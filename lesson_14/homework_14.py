@@ -110,6 +110,9 @@ if __name__ == '__main__':
     user2 = SiteUser("Jane Smith", "jane.smith@example.com", "admin")
     user3 = SiteUser("John Kennedy", "john.kennedy@example.com", "user")
     print(user1)
+    user1.increase_logcount(user1)
+    print(user1.logcount)
+    print(user2.logcount)
 
     if user1 == user2:
         print("Користувачі однакові")
