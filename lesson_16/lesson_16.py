@@ -42,3 +42,6 @@ if __name__ == "__main__":
     print(request.__file__)
     print(__name__)
     print(__cached__)
+
+    # pip freeze > requirements.txt
+    # pip install -r requirements.txt
