@@ -51,7 +51,7 @@ class SQLiteDB:
                     i += 1
             self.create_table(table_name, columns_list)
             for row in data_read:
-                for key,value in enumerate(row):
+                for key, value in enumerate(row):
                     row[key] = value.replace("'", "")
                 insert_dict = dict(zip(columns_list, row))
                 self.insert_to_table(table_name, insert_dict)
