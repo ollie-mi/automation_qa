@@ -54,9 +54,13 @@ class users():
         return s.put(base_api_url+endpoint, json=request_body)
 
     @staticmethod
-    def resetpassword(s:requests.session, user_id:int, token:str):
+    def resetpassword(s:requests.session, request_body: dict):
         # TODO: make this part better
-        endpoint = f"/users/resetpassword/{user_id}/{token}"
+        endpoint = "/users/resetpassword"
+        if 'user_id' in request_body and 'token' in request_body:
+            endpoint += f"/{request_body['user_id']}/{request_body['token']}"
+        else:
+            raise ValueError("Request body should contain 'user_id' and 'token'")
         return s.get(base_api_url+endpoint)
 
     @staticmethod
