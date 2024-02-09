@@ -25,8 +25,9 @@ for key, timestamps in heartbit_dict.items():
     for i in range(len(timestamps) - 1):
         intervals.append((timestamps[i] - timestamps[i + 1]).total_seconds())
 
-    for interval in intervals:
+    for index, interval in enumerate(intervals):
         if 30 < interval <= 32:
-            logging.warning(f"Heartbeat more than 30 seconds but less than 32 - Key: {key}")
+            logging.warning(f"Heartbeat more than 30 seconds but less than 32 - Key: {key}, "
+                            f"Time: {timestamps[index].strftime('%H:%M:%S')}")
         elif interval > 32:
-            logging.error(f"Heartbeat exactly 32 seconds - Key: {key}")
+            logging.error(f"Heartbeat exactly 32 seconds - Key: {key}, Time: {timestamps[index].strftime('%H:%M:%S')}")
