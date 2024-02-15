@@ -15,11 +15,11 @@ def get_xpath(content, x_path):
     return text
 
 broken_html = """<html><head>
-<title>test<body><h1>page title</h3>
-<a rel='my@mail.com'>click me</a>
+<title>test<body><h1>page title</h1>
+<a href='mailto:my@mail.com' rel='my@mail.com'>click me</a>
 <p class='abc' > some text
-<div id="xyz"> text </div>
-""" # неевірний покоцаний хтмл
+<div id="xyz"> text </div>  <p class="">невірний, покоцаний html
+""" # невірний покоцаний хтмл
 
 
 if __name__ == "__main__":
@@ -33,5 +33,5 @@ if __name__ == "__main__":
     result = etree.tostring(tree.getroot(),
                 pretty_print=True, method="html")  # звороне перетворення - обєкт дерева у строку
     print(result.decode("utf-8"))
-    with open("index.html", "w", encoding="utf-8") as f:
-        f.write(str(result.decode("utf-8")))
+    with open("index.html", "w") as f:
+        f.write(str(result, encoding="utf8"))
