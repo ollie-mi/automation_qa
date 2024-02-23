@@ -21,8 +21,8 @@ def find_by_path(driver, xpath):
         element = None
     return element
 
-# EXplicit == EXpected
-# IMplicit == IMagine
+# EXplicit is EXpected
+# IMplicit is IMaginary
 
 def test_explicit(driver):
     driver.get('https://www.selenium.dev/selenium/web/dynamic.html')
