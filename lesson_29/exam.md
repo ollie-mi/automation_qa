@@ -1,4 +1,19 @@
-### Завдання: Тестування на веб-сайті
+# Creating report
+## JUnitXML format files
+pytest --junitxml=path
+
+## Other tools
+https://pytest-html.readthedocs.io/en/latest/
+https://github.com/oldani/HtmlTestRunner
+
+### made in russia
+https://pypi.org/project/allure-pytest/
+
+
+# Live Share
+Install plugin and begin!
+
+# Завдання: Тестування на веб-сайті
 
 **Завдання:**
 Напишіть автоматизовані тести для перевірки роботи на веб-сайті "example.com".
