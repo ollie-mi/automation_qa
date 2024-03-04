@@ -45,8 +45,7 @@ def expected_nf_field(driver):
         driver.quit()
 
 
-def expected_field(driver):
-    xpath = '//*[@name="q"]'
+def expected_field(driver, xpath):
     try:
         element = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, xpath))
@@ -56,10 +55,19 @@ def expected_field(driver):
         )  # чи клікабельне
         screen_path = pathlib.Path(__file__).parent / "screenshot.png"
         driver.save_screenshot(f'{screen_path}')
+        return element
     except TimeoutException:
         print("За даний час елемент не зявився на сторінці")
-    finally:
-        driver.quit()
+
+
+def find_element_by_class_name(driver, class_name):
+    try:
+        return WebDriverWait(driver, 5).until(
+            EC.presence_of_element_located((By.CLASS_NAME, class_name))
+        )
+    except TimeoutException:
+        print(f"Element with class name {class_name} is not found")
+
 
 
 
@@ -77,6 +85,7 @@ if __name__ == "__main__":
     # expected_nf_field(driver)
 
     # очікування і скріншот
+    xpath = '//*[@name="q"]'
     driver = get_url(python_url)
-    expected_field(driver)
+    expected_field(driver, xpath)
 
